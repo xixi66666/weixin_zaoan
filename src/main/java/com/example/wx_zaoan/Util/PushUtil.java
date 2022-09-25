@@ -22,10 +22,10 @@ public class PushUtil {
     /**
      * 测试号的appId和secret
      */
-    private static String appId = "wxaa5137180d6c3363";
-    private static String secret = "b239b57feff76c25680d8e3b188618d7";
+    private static String appId = "";
+    private static String secret = "";
     //模版id
-    private static String templateId = "Op1dod0U7UNbWk5Ztv4VTXjXEBR_lvPDQW2m4Ed13l0";
+    private static String templateId = "";
 
     public static void push(String openId){
         //1，配置
