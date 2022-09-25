@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+
 
 @RestController
 public class PushController {
@@ -21,7 +23,7 @@ public class PushController {
      *
      */
     @GetMapping("/push")
-    public void push() {
+    public void push() throws ParseException {
         PushUtil.push(ycx);
     }
 
@@ -29,7 +31,7 @@ public class PushController {
      * 微信测试账号推送
      * */
     @GetMapping("/push/wwy")
-    public void pushZyd() {
+    public void pushZyd() throws ParseException {
         PushUtil.push(wwy);
     }
 
@@ -38,7 +40,7 @@ public class PushController {
      * 微信测试账号推送
      * */
     @GetMapping("/push/{id}")
-    public void pushId(@PathVariable("id") String id) {
+    public void pushId(@PathVariable("id") String id) throws ParseException {
         PushUtil.push(id);
     }
 }

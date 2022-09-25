@@ -3,6 +3,8 @@ package com.example.wx_zaoan.Util;
 /**
  * @author YangChenxi
  */
+import sun.util.calendar.BaseCalendar;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,17 +37,20 @@ public class JiNianRiUtil {
         int day = 0;
         try {
             Date dateNow = new Date();
-            int year = dateNow.getYear();
-            System.out.println(year);
-            long time = simpleDateFormat.parse(date).getTime() - System.currentTimeMillis() ;
-            day = (int) (time / 86400000L);
+            int year = dateNow.getYear() + 1900;
+            String today = year + "-" + (dateNow.getMonth()+1) + "-" + (dateNow.getDate());
+            String target = year + "-" + "12-" + "26";
+            Date start = simpleDateFormat.parse(today);
+            Date end = simpleDateFormat.parse(target);
+            long time = end.getTime() - start.getTime() ;
+            day = (int) (time / (24*60*60*1000));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         if(day > 0){
-            return 365 - (day % 365);
+            return  day;
         }else{
-            return 365 - ((-day) % 365);
+            return (-day);
         }
 
     }
@@ -73,17 +78,25 @@ public class JiNianRiUtil {
     }
 
 
-    public static int getLianAi() {
-        System.out.println(before(lianAi));
-        return before(lianAi);
+    public static int getLianAi() throws ParseException {
+        int day = 0;
+        long time = simpleDateFormat.parse(lianAi).getTime() - System.currentTimeMillis();
+        day = (int) (time / 86400000L);
+        if(day > 0){
+            return day;
+        }else{
+            return -day;
+        }
     }
 
     public static int getShengRi(){
         return after(shengRi);
     }
-
+    public static int guoShengRi(){
+        return before(shengRi);
+    }
     public static void main(String[] args) throws ParseException {
-        System.out.println(before(shengRi));
+        System.out.println(getShengRi());
     }
 
 

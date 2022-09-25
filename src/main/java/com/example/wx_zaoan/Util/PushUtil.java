@@ -10,6 +10,7 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 
+import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -22,12 +23,12 @@ public class PushUtil {
     /**
      * 测试号的appId和secret
      */
-    private static String appId = "";
-    private static String secret = "";
+    private static String appId = "wxaa5137180d6c3363";
+    private static String secret = "b239b57feff76c25680d8e3b188618d7";
     //模版id
-    private static String templateId = "";
+    private static String templateId = "Op1dod0U7UNbWk5Ztv4VTXjXEBR_lvPDQW2m4Ed13l0";
 
-    public static void push(String openId){
+    public static void push(String openId) throws ParseException {
         //1，配置
         WxMpInMemoryConfigStorage wxStorage = new WxMpInMemoryConfigStorage();
         wxStorage.setAppId(appId);
@@ -38,7 +39,8 @@ public class PushUtil {
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openId)
                 .templateId(templateId)
-                .url("https://127.0.0.1:1234/push")//点击模版消息要访问的网址
+                //.url("http://124.221.208.250:1234/push")//点击模版消息要访问的网址
+                .url("http://127.0.0.1:1234/push")//点击模版消息要访问的网址
                 .build();
         //3,如果是正式版发送模版消息，这里需要配置你的信息
         //        templateMessage.addData(new WxMpTemplateData("name", "value", "#FF00FF"));
@@ -66,7 +68,7 @@ public class PushUtil {
         templateMessage.addData(new WxMpTemplateData("beizhu",beizhu,"#FF0000"));
         templateMessage.addData(new WxMpTemplateData("lianai",JiNianRiUtil.getLianAi() + "","#FF1493"));
         templateMessage.addData(new WxMpTemplateData("shengri",JiNianRiUtil.getShengRi() + "","#FFA500"));
-        //templateMessage.addData(new WxMpTemplateData("guoshengri",,"#FFA500"));
+        templateMessage.addData(new WxMpTemplateData("guoshengri",JiNianRiUtil.guoShengRi() + "","#FFA500"));
         try {
             System.out.println(templateMessage.toJson());
             System.out.println(wxMpService.getTemplateMsgService().sendTemplateMsg(templateMessage));
