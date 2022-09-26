@@ -22,6 +22,10 @@ public class PushController {
      * 微信测试账号推送
      *
      */
+    @GetMapping("/")
+    public String init(){
+        return "index.html";
+    }
     @GetMapping("/push")
     public void push() throws ParseException {
         PushUtil.push(ycx);
