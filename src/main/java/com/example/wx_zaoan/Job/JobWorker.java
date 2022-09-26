@@ -1,4 +1,4 @@
-package com.example.wx_zaoan.Controller;
+package com.example.wx_zaoan.Job;
 
 /**
  * @author YangChenxi
@@ -16,13 +16,13 @@ import java.text.ParseException;
  *@Date 2022/8/2 16:00
  */
 @Component
-public class Job {
+public class JobWorker {
     //要推送的用户openid
     private static String openId = "oxqz15nzkP5RY6wwa8X2x7G5EJuE";
 
-    @Scheduled(cron = "0 30 7 * * ?")
+    @Scheduled(cron = "0 10-15 14 * * ?")
     public void goodMorning() throws ParseException {
+        System.out.println("job works---");
         PushUtil.push(openId);
     }
-
 }
