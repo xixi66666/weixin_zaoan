@@ -8,3 +8,5 @@
 距离你的生日还有 {{shengri.DATA}} 天
 {{caihongpi.DATA}}
 {{jinju.DATA}}
+
+Cnbj3LRRzcW7i7ncpFmT7hROp3eVbWGXuqH3GaEFCMg
